@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AEshope - Interactive HTML Greetings</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-thumb { background: rgba(100,100,255,0.6); border-radius: 3px; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 overflow-x-hidden">
+
+  <!-- Hero Section -->
+  <section class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-center px-6">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-down" data-aos-duration="800">
+      Selamat datang di AEshope
+    </h1>
+    <p class="max-w-2xl text-lg mb-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+      Kami menyediakan jasa pembuatan ucapan HTML interaktif yang bisa disesuaikan sepenuhnya sesuai keinginan Anda!
+    </p>
+    <a href="#about" class="scroll-btn px-8 py-3 bg-white text-indigo-600 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+       data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
+      Pelajari Layanan
+    </a>
+  </section>
+
+  <!-- About / Service Description -->
+  <section id="about" class="py-16 bg-white px-6 sm:px-12 lg:px-24">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <!-- Moments List -->
+        <div data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
+          <h2 class="text-2xl font-bold mb-4 animate-pulse">💌 Cocok untuk berbagai momen spesial:</h2>
+          <ul class="list-disc list-inside space-y-2 text-gray-700 animate-fadeIn" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+            <li>Ulang tahun</li>
+            <li>Anniversary</li>
+            <li>Wisuda</li>
+            <li>Hari Ibu / Ayah</li>
+            <li>Ucapan semangat & motivasi</li>
+            <li>Dan banyak lagi!</li>
+          </ul>
+        </div>
+        <!-- Features List -->
+        <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+          <h2 class="text-2xl font-bold mb-4 animate-pulse">🎨 Fitur yang bisa Anda custom:</h2>
+          <ul class="space-y-3 text-gray-700 animate-fadeIn" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+            <li>✅ Background sesuai tema (foto, warna, animasi, dll.)</li>
+            <li>✅ Musik latar (bisa pilih lagu favorit Anda)</li>
+            <li>✅ Isi ucapan/kata-kata sesuai momen dan gaya bahasa Anda</li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-8 text-center text-gray-600 animate-fadeIn" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="600">
+        💡 Ucapan bisa diakses lewat link dan dibuka di HP atau PC. Tampilan menarik, interaktif, dan penuh kesan!
+      </p>
+    </div>
+  </section>
+
+  <!-- Products Grid -->
+  <section id="products" class="py-16 px-4 sm:px-8 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">
+      Produk Digital Kami
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Product cards injected via JS -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 bg-indigo-600 text-indigo-100 text-center">
+    <p>&copy; 2025 AEshope. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({ once: true, offset: 80 });
+
+    // GSAP micro animation for links and buttons
+    document.addEventListener('mouseover', e => {
+      if (e.target instanceof Element && (e.target.matches('a') || e.target.matches('button'))) {
+        gsap.to(e.target, { scale: 1.05, duration: 0.2 });
+      }
+    });
+    document.addEventListener('mouseleave', e => {
+      if (e.target instanceof Element && (e.target.matches('a') || e.target.matches('button'))) {
+        gsap.to(e.target, { scale: 1.0, duration: 0.2 });
+      }
+    });
+
+    // Scroll to about with smooth animation
+    document.querySelector('.scroll-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      const about = document.querySelector('#about');
+      gsap.to(window, { duration: 1, scrollTo: { y: about, offsetY: 50 }, ease: "power2.out" });
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollToPlugin.min.js"></script>
+  <script>
+    // Produk data dan rendering
+    const products = [
+      { name: 'Ucapan Ulang Tahun', desc: 'Template interaktif ulang tahun.', img: 'https://via.placeholder.com/400x250?text=Ulang+Tahun', oldPrice: 'Rp 60.000', price: 'Rp 20.000', previewLink: 'https://example.com/preview/ulang-tahun', whatsapp: 'https://wa.me/6285155332941?text=Saya%20tertarik%20dengan%20Ucapan%20Ulang%20Tahun' },
+      { name: 'Ucapan Anniversary', desc: 'Desain romantis untuk momen spesial.', img: 'https://via.placeholder.com/400x250?text=Anniversary', oldPrice: 'Rp 60.000', price: 'Rp 20.000', previewLink: 'https://example.com/preview/anniversary', whatsapp: 'https://wa.me/6285155332941?text=Saya%20tertarik%20dengan%20Ucapan%20Anniversary' },
+      { name: 'Ucapan Wisuda', desc: 'Desain elegan untuk wisuda tercinta.', img: 'https://via.placeholder.com/400x250?text=Wisuda', oldPrice: 'Rp 60.000', price: 'Rp 20.000', previewLink: 'https://example.com/preview/wisuda', whatsapp: 'https://wa.me/6285155332941?text=Saya%20tertarik%20dengan%20Ucapan%20Wisuda' }
+    ];
+    const grid = document.querySelector('#products .grid');
+    products.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'bg-white rounded-2xl shadow-xl overflow-hidden transform hover:-translate-y-2 hover:shadow-2xl transition-all duration-300';
+      card.setAttribute('data-aos','flip-left'); card.setAttribute('data-aos-duration','800');
+      card.innerHTML = `
+        <img src="${p.img}" alt="${p.name}" class="w-full h-48 object-cover">
+        <div class="p-6 flex flex-col">
+          <h3 class="text-xl font-semibold mb-2">${p.name}</h3>
+          <p class="text-gray-600 mb-4 flex-grow">${p.desc}</p>
+          <div class="mb-4">
+            <span class="text-gray-500 line-through mr-2">${p.oldPrice}</span>
+            <span class="text-2xl font-bold text-indigo-600">${p.price}</span>
+          </div>
+          <div class="flex space-x-2">
+            <a href="${p.previewLink}" target="_blank" class="preview-btn flex-1 text-center px-4 py-2 border border-indigo-600 text-indigo-600 rounded-full font-medium hover:bg-indigo-50">Preview</a>
+            <a href="${p.whatsapp}" target="_blank" class="shop-btn flex-1 text-center px-4 py-2 bg-green-500 text-white rounded-full font-medium hover:bg-green-600">Shop Now</a>
+          </div>
+        </div>`;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
